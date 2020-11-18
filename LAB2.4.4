@@ -24,9 +24,16 @@ int main()
     std::cout<<"Сортировка челноком: ";
     shuttle_sorting(A,n);
     
-    std::cout<<"Бинарный поиск: \n Введите ключ который нужно найти";
+    std::cout<<"Бинарный поиск:\n Введите ключ который нужно найти: ";
     std::cin>>key;
-    binarySearch(A,key,n);
+    if (binarySearch(A, key,n)==-1)
+    {
+        std::cout<<"\nЭлемент не найден";
+    }
+    else
+    {
+        std::cout<<"\nНомер элемента: "<<binarySearch(A, key,n)+1;
+    }
     
  
  return 0;
