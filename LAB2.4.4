@@ -1,0 +1,58 @@
+#define N 10
+#include <iostream>
+
+void swap(int& n1, int& n2);
+int shuttle_sorting(int *A,int n);
+void print_massive(int *A,int n);
+
+int main()
+{
+    int n=0;
+    std::cout<<"Введите размер массива: ";
+    std::cin>>n;
+    
+    int A[n];
+    for(int i=0;i<n;i++)
+    {
+        A[i]=rand() % 100;
+    }
+    std::cout<<"Выводим сгенерированынй масиив: ";
+    print_massive(A,n);
+    std::cout<<"Сортировка челноком: ";
+    shuttle_sorting(A,n);
+    
+ 
+ return 0;
+}
+
+void print_massive(int *A,int n)
+{
+   for(int i=0;i<n;i++)
+    {
+        std::cout<<A[i]<<' ';
+    } 
+    std::cout<<"\n";
+}
+
+ void swap(int& n1, int& n2)
+{
+    int _t = n1;
+    n1 = n2;
+    n2 = _t; 
+    
+}
+
+
+
+
+int shuttle_sorting(int *A,int n)
+{
+      for (int i = 0; i < n-1; i++)
+        if (A[i] > A[i+1])
+        {
+            swap(A[i],A[i+1]);
+            for (int k = i; (A[k] < A[k-1]) && (k >= 1); k--)
+                swap(A[k],A[k-1]);
+        }
+    print_massive(A,n);
+}
