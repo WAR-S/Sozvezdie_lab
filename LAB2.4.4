@@ -12,7 +12,8 @@ int main() {
   std::cout << "Введите размер массива: ";
   std::cin >> n;
 
-  int A[n];
+  int A[n]; 
+  srand(time(0));
   for (int i = 0; i < n; i++) {
     A[i] = rand() % 100;
   }
