@@ -4,9 +4,11 @@
 void swap(int& n1, int& n2);
 int shuttle_sorting(int *A,int n);
 void print_massive(int *A,int n);
+int binarySearch(int *A, int key, int n);
 
 int main()
 {
+    int key = 0; //Ключ поиска
     int n=0;
     std::cout<<"Введите размер массива: ";
     std::cin>>n;
@@ -18,8 +20,13 @@ int main()
     }
     std::cout<<"Выводим сгенерированынй масиив: ";
     print_massive(A,n);
+    
     std::cout<<"Сортировка челноком: ";
     shuttle_sorting(A,n);
+    
+    std::cout<<"Бинарный поиск: \n Введите ключ который нужно найти";
+    std::cin>>key;
+    binarySearch(A,key,n);
     
  
  return 0;
@@ -56,3 +63,18 @@ int shuttle_sorting(int *A,int n) // Сортировка челноком
         }
     print_massive(A,n);
 }
+
+
+int binarySearch(int *A, int key, int n)
+{
+    int left=0, right=n, mid;
+    while (left<=right)
+    {
+    mid=left+(right-left)/2;
+    if (key<A[mid]) right=mid-1;
+    else if (key>A[mid]) left=mid+1;
+    else return mid;
+    }
+return -1;
+}
+
