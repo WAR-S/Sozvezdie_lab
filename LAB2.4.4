@@ -76,9 +76,10 @@ std::cout<<"//Генерируем новый массив\n";
  std::cout<<"Сортировка центральной вставкой : \n ";
  insertionSort(A,n);
  print_massive(A,n); //вывод отсортированного массива
- std::cout<<"Интерполяционный поиск : \n ";
- if (interpolSearch(A, key)==-1) cout<<"\nЭлемент не найден";
- else cout<<"\nНомер элемента: "<<interpolSearch(A, key)+1;
+ std::cout<<"Интерполяционный поиск : \n Введите ключ поиска: ";
+   std::cin >> key;
+ if (interpolSearch(A, key)==-1) std:cout<<"\nЭлемент не найден";
+ else std::cout<<"\nНомер элемента: "<<interpolSearch(A, key)+1;
 
 
 
