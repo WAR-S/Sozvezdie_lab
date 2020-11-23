@@ -1,19 +1,22 @@
-#define N 
+#define N
 #include <iostream>
 #include <ctime>
- //Проектируем массив
+ //Объявляем прототипы
 void swap(int & n1, int & n2);
 int shuttle_sorting(int * A, int n);
 void print_massive(int * A, int n);
 int binarySearch(int * A, int key, int n);
+int recursiveBinarySearch(int * A, int key, int first, int last)
 
 int main() {
+  int first=0;
+  int last=0;
   int key = 0; //Ключ поиска
   int n = 0;
   std::cout << "Введите размер массива: ";
   std::cin >> n;
 
-  int A[n]; 
+  int A[n];
   srand(time(0));
   for (int i = 0; i < n; i++) {
     A[i] = rand() % 100;
@@ -31,6 +34,8 @@ int main() {
   } else {
     std::cout << "\nНомер элемента: " << binarySearch(A, key, n) + 1;
   }
+
+
 
   return 0;
 }
@@ -62,7 +67,7 @@ int shuttle_sorting(int * A, int n) // Сортировка челноком
   print_massive(A, n);
 }
 
-int binarySearch(int * A, int key, int n) {
+int binarySearch(int * A, int key, int n) { // обычный бинарный поиск
   int left = 0, right = n, mid;
   while (left <= right) {
     mid = left + (right - left) / 2;
@@ -71,6 +76,33 @@ int binarySearch(int * A, int key, int n) {
     else return mid;
   }
   return -1;
+}
+
+int recursiveBinarySearch(int * A, int key, int fist, int last)
+{
+  if (first > last)
+  {
+    return -1; //элемент не найден
+  }
+  int middle = (first+last)/2
+  int middle_value=A[middle];
+  if (middle_value==key)
+  {
+    return middle;
+  }
+  else
+  {
+    if (middle_value>key)
+    {
+      return recursiveBinarySearch(A,key,fist,middle-1);
+    }
+    else
+    {
+      return recursiveBinarySearch(A,key,middle+1,last);
+    }
+  }
+
+
 }
 
 void Shell(int A[], int n) //сортировка Шелла
@@ -91,5 +123,5 @@ void Shell(int A[], int n) //сортировка Шелла
     d = d / 2;
   }
   print_massive(A,n);
-  
+
 }
