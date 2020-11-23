@@ -10,7 +10,7 @@ void print_massive(int * A, int n);
 int binarySearch(int * A, int key, int n);
 int recursiveBinarySearch(int * A, int key, int first, int last);
 void quicksort(int *A, int first, int last);
-void centeredInsertion( int A[], int length );
+void insertionSort(int A[], int n);
 
 int main() {
   setlocale(LC_ALL, "Russian");
@@ -71,7 +71,7 @@ int main() {
   print_massive(A,n);//Вывод неотсортированного массива
 
  std::cout<<"Сортировка центральной вставкой ";
- centeredInsertion(A,n);
+ insertionSort(A,n);
  print_massive(A,n); //вывод отсортированного массива
 
 
@@ -190,15 +190,19 @@ if (f<last) quicksort(A, f, last);
 }
 
 
-void centeredInsertion( int A[], int length ){
-    int i, j, item;
-    for(i=1; i<length; i++){
-        item = A;
-        j = i;
-        while ( item < A[j-1] ){
-            A[j] = A[j-1];
-            j--;
+void insertionSort(int A[], int n) //сортировка центральной вставкой
+{
+    int i, key, j;
+    for (i = 1; i < n; i++)
+    {
+        key = A[i];
+        j = i - 1;
+
+        while (j >= 0 && A[j] > key)
+        {
+            A[j + 1] = A[j];
+            j = j - 1;
         }
-        A[j] = item;
+        A[j + 1] = key;
     }
 }
