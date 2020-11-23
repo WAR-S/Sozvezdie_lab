@@ -9,6 +9,7 @@ int shuttle_sorting(int * A, int n);
 void print_massive(int * A, int n);
 int binarySearch(int * A, int key, int n);
 int recursiveBinarySearch(int * A, int key, int first, int last);
+void quicksort(int *A, int first, int last);
 
 int main() {
   setlocale(LC_ALL, "Russian");
@@ -20,7 +21,7 @@ int main() {
   std::cin >> n;
 
   int A[n];
-  std::srand(time(0));
+  std::srand(time(0)); //генерируем случайный массив
   for (int i = 0; i < n; i++) {
     A[i] = rand() % 100;
   }
@@ -38,18 +39,29 @@ int main() {
     std::cout << "\nНомер элемента: " << binarySearch(A, key, n) + 1;
   }
 
+  std::cout << "\nРекурсивный бинарный поиск:\n Введите ключ который нужно найти: ";
+  std::cin >> key;
+  int searchResult = recursiveBinarySearch(A, key, 0, n - 1);
+        if (searchResult < 0)
+        {
+          std::cout<<"Элемент со значением " <<key <<" не найден";
+        }
+        else
+        {
+        std::cout<<"Элемент найден. Индекс элемента со значением: "<<key<<" равен: "<< searchResult+1; //Нарушаем каноны индексирования с 0 :)
+        }
 
-    std::cout << "\nРекурсивный бинарный поиск:\n Введите ключ который нужно найти: ";
-    std::cin >> key;
-    int searchResult = recursiveBinarySearch(A, key, 0, n - 1);
-          if (searchResult < 0)
-          {
-            std::cout<<"Элемент со значением " <<key <<" не найден";
-          }
-          else
-          {
-          std::cout<<"Элемент найден. Индекс элемента со значением: "<<key<<" равен: "<< searchResult+1; //Нарушаем каноны индексирования с 0 :)
-          }
+  std::srand(time(0)); //генерируем случайный массив х2
+  for (int i = 0; i < n; i++)
+  {
+    A[i] = rand() % 100;
+  }
+
+  first=0; last=n-1;
+  quicksort(A, first, last); // быстрая сортировка
+  print_massive(A,n); //вывод отсортированного массива
+
+
 
 
 
@@ -140,4 +152,26 @@ void Shell(int A[], int n) //сортировка Шелла
   }
   print_massive(A,n);
 
+}
+void quicksort(int *A, int first, int last)
+{
+int mid, count;
+int f=first, l=last;
+mid=A[(f+l) / 2]; //вычисление опорного элемента
+  do
+  {
+    while (A[f]<mid) f++;
+    while (A[l]>mid) l--;
+    if (f<=l) //перестановка элементов
+    {
+      count=A[f];
+      A[f]=A[l];
+      A[l]=count;
+      f++;
+      l--;
+    }
+  }
+ while (f<l);
+ if (first<l) quicksort(A, first, l);
+if (f<last) quicksort(A, f, last);
 }
