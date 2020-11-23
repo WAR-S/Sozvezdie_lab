@@ -39,16 +39,9 @@ int main() {
   }
 
 
-  while (true)
-  {
-    std::cout<<std::endl;
     std::cout << "\nРекурсивный бинарный поиск:\n Введите ключ который нужно найти: ";
     std::cout<<"\tВведите -777 для выхода";
     std::cin >> key;
-    if (key == -777)
-           {
-               break;
-           }
     int searchResult = recursiveBinarySearch(A, key, 0, n - 1);
           if (searchResult < 0)
           {
@@ -58,7 +51,6 @@ int main() {
           {
           std::cout<<"Элемент найден. Индекс элемента со значением: "<<key<<" равен: "<< searchResult;
           }
-  std::cout<<std::endl;
   }
 
 
