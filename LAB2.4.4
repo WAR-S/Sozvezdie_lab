@@ -78,7 +78,7 @@ std::cout<<"//Генерируем новый массив\n";
  print_massive(A,n); //вывод отсортированного массива
  std::cout<<"Интерполяционный поиск : \n Введите ключ поиска: ";
    std::cin >> key;
- if (interpolSearch(A, key)==-1) std::cout<<"\nЭлемент не найден";
+ if (interpolSearch(A, key,n)==-1) std::cout<<"\nЭлемент не найден";
  else std::cout<<"\nНомер элемента: "<<interpolSearch(A, key,n)+1;
 
 
