@@ -56,7 +56,7 @@ int main() {
           {
           std::cout<<"Элемент найден. Индекс элемента со значением"<<key<<" равен: "<< searchResult;
           }
-      }
+      
   }
 
 
@@ -101,7 +101,7 @@ int binarySearch(int * A, int key, int n) { // обычный бинарный �
   return -1;
 }
 
-int recursiveBinarySearch(int * A, int key, int fist, int last)
+int recursiveBinarySearch(int * A, int key, int first, int last)
 {
   if (first > last)
   {
@@ -117,7 +117,7 @@ int recursiveBinarySearch(int * A, int key, int fist, int last)
   {
     if (middle_value>key)
     {
-      return recursiveBinarySearch(A,key,fist,middle-1);
+      return recursiveBinarySearch(A,key,first,middle-1);
     }
     else
     {
