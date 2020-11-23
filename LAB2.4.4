@@ -10,6 +10,7 @@ void print_massive(int * A, int n);
 int binarySearch(int * A, int key, int n);
 int recursiveBinarySearch(int * A, int key, int first, int last);
 void quicksort(int *A, int first, int last);
+void centeredInsertion( int A[], int length );
 
 int main() {
   setlocale(LC_ALL, "Russian");
@@ -56,10 +57,22 @@ int main() {
   {
     A[i] = rand() % 100;
   }
+  print_massive(A,n);//Вывод неотсортированного массива
 
   first=0; last=n-1;
   quicksort(A, first, last); // быстрая сортировка
   print_massive(A,n); //вывод отсортированного массива
+
+  std::srand(time(0)); //генерируем случайный массив х3
+  for (int i = 0; i < n; i++)
+  {
+    A[i] = rand() % 100;
+  }
+  print_massive(A,n);//Вывод неотсортированного массива
+
+ std::cout<<"Сортировка центральной вставкой ";
+ centeredInsertion(A,n);
+ print_massive(A,n); //вывод отсортированного массива
 
 
 
@@ -153,7 +166,7 @@ void Shell(int A[], int n) //сортировка Шелла
   print_massive(A,n);
 
 }
-void quicksort(int *A, int first, int last)
+void quicksort(int *A, int first, int last) // быстрая сортировка
 {
 int mid, count;
 int f=first, l=last;
@@ -174,4 +187,18 @@ mid=A[(f+l) / 2]; //вычисление опорного элемента
  while (f<l);
  if (first<l) quicksort(A, first, l);
 if (f<last) quicksort(A, f, last);
+}
+
+
+void centeredInsertion( int A[], int length ){
+    int i, j, item;
+    for(i=1; i<length; i++){
+        item = A;
+        j = i;
+        while ( item < A[j-1] ){
+            A[j] = A[j-1];
+            j--;
+        }
+        A[j] = item;
+    }
 }
