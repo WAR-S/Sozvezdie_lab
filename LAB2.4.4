@@ -39,12 +39,24 @@ int main() {
   }
 
   std::cout << "Рекурсивный бинарный поиск:\n Введите ключ который нужно найти: ";
-  std::cin >> key;
-  if (recursiveBinarySearch(A,key,first,last)==-1)
+  while (true)
   {
-    std::cout << "\nЭлемент не найден";
-  } else {
-    std::cout << "\nНомер элемента: " << recursiveBinarySearch(A,key,first,last)+1;
+    std::cout<<"Введите -777 для выхода";
+    std::cin >> key;
+    if (key == -777)
+           {
+               break;
+           }
+    int searchResult = recursiveBinarySearch(array, k, 0, array.Length - 1);
+          if (searchResult < 0)
+          {
+            std::cout("Элемент со значением" + k +" не найден");
+          }
+          else
+          {
+          std::cout("Элемент найден. Индекс элемента со значением"+k+" равен: "+ searchResult);
+          }
+      }
   }
 
 
