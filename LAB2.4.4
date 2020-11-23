@@ -11,6 +11,7 @@ int binarySearch(int * A, int key, int n);
 int recursiveBinarySearch(int * A, int key, int first, int last);
 void quicksort(int *A, int first, int last);
 void insertionSort(int A[], int n);
+int interpolSearch(int A[], int key);
 
 int main() {
   setlocale(LC_ALL, "Russian");
@@ -75,8 +76,9 @@ std::cout<<"//Генерируем новый массив\n";
  std::cout<<"Сортировка центральной вставкой : \n ";
  insertionSort(A,n);
  print_massive(A,n); //вывод отсортированного массива
-
-
+ std::cout<<"Интерполяционный поиск : \n ";
+ if (InterpolSearch(A, key)==-1) cout<<"\nЭлемент не найден";
+ else cout<<"\nНомер элемента: "<<InterpolSearch(A, key)+1;
 
 
 
@@ -207,4 +209,18 @@ void insertionSort(int A[], int n) //сортировка центральной
         }
         A[j + 1] = key;
     }
+}
+
+int interpolSearch(int A[], int key)//интерполяционный поиск
+{
+int mid, left=0, right=N-1;
+while (A[left]<=key && A[right]>=key)
+{
+mid=left+((key-A[left])*(right-left))/(A[right]-A[left]);
+if (A[mid]<key) left=mid+1;
+  else if (A[mid]>key) right=mid-1;
+  else return mid;
+}
+if (A[left]==key) return left;
+  else return -1;
 }
