@@ -37,6 +37,17 @@ int main() {
   } else {
     std::cout << "\nНомер элемента: " << binarySearch(A, key, n) + 1;
   }
+
+  std::cout << "Рекурсивный бинарный поиск:\n Введите ключ который нужно найти: ";
+  std::cin >> key;
+  if (recursiveBinarySearch(A,key,first,last)==-1)
+  {
+    std::cout << "\nЭлемент не найден";
+  } else {
+    std::cout << "\nНомер элемента: " << recursiveBinarySearch(A,key,first,last)+1;
+  }
+
+
   return 0;
 }
 
