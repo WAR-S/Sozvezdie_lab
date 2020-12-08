@@ -1,0 +1,97 @@
+#include <iostream>
+#include <stack>
+#include <string>
+#include <fstream>
+
+void reverse_String(std::string& greet, int n,int i){
+
+  if(n<=i){return;}
+
+  std::swap(greet[i],greet[n]);
+  reverse_String(greet,n-1,i+1);
+
+}
+
+
+std::stack <std::string> work_string()
+{
+	std::stack < std::string > st ;
+	std::string result;
+	std::ifstream inputFile ( "input.txt" , std::ios_base::in ) ;
+    if ( ! inputFile.is_open ( ) ) {
+        std::cerr << "open file error\n" ;
+    }
+    std::string str ;
+    while ( std::getline ( inputFile , str ) ) {
+        std::size_t count = 0;
+    	int index = 0;
+    	int search =0;
+    	//string do izmeneniy
+       	for (int i=0;str[i]!='\0';i++)
+       	{
+        	std::cout<<str[i];
+		}
+		std::cout<<std::endl;
+        //number to the end
+		while (str.size() != count) {
+
+        if (::isdigit(str[index])) {
+
+            str.push_back(str[index]);
+            str.erase(index, 1);
+            --index;
+
+        }
+
+        ++count;
+        ++index;
+
+    }
+     std::cout <<"number in the end:		"<< str << '\n';
+
+    for (int i=0;i<str.size();i++) //find index first number
+    {
+       if(isdigit(str[index]))
+       {
+        search=index;
+        break;
+       }
+       else
+       {
+          index++;
+       }
+    }
+    int z=str.length()-1;
+    std::cout<<"Index vhozdenia 1 number	"<<search<<std::endl;//index firest number
+    std::cout<<"int vhozdenia last numbler	"<<z<<std::endl;//index last number
+    std::string numStr=str.substr(search,z);
+    std::string stringStr=str.substr(0,search-1);
+    std::cout<<"before reverse:	"<<numStr<<"\n";
+    reverse_String(numStr,numStr.length()-1,0);
+    std::cout<<"after reverse: "<<numStr<<"\n";
+	//std::reverse(numStr.begin(), numStr.end());
+	result=stringStr+numStr;
+	std::cout<<result+'\n';
+
+
+	st.push(result);
+}
+return st;
+}
+
+int main ( ) {
+		std::cout<<"Work with stack: \n";
+		std::stack <std::string> str = work_string();
+		std::cout<<"Work with stack :\n";
+   		std::ofstream out;
+		out.open("output.txt");
+		if (out.is_open())
+		{
+			while ( !str.empty ( ) )
+			{
+            out<<str.top ( ) <<std::endl;
+            str.pop ( ) ;
+        	}
+		}
+
+}
